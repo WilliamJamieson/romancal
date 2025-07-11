@@ -734,7 +734,9 @@ def compare_asdf(result, truth, ignore=None, rtol=1e-05, atol=1e-08, equal_nan=T
     diff_result : DiffResult
         result of the comparison
     """
-    exclude_paths = []
+    exclude_paths = [
+        "root['roman']['meta']['file_date']"  # always exclude the file date
+    ]
     ignore = ignore or []
     for path in ignore:
         key_path = "".join([f"['{k}']" for k in path.split(".")])
