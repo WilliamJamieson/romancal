@@ -189,6 +189,8 @@ def test_individual_image_meta(base_image):
     # this will end up in the "basic" table
     models[1].meta["extra"] = {}
     models[1].meta.extra = {"a": 1}
+    models[1].meta.photometry["extra"] = {}
+    models[1].meta.photometry.extra = {"b": 2}
 
     # remove "background" from one model
     del models[0].meta["background"]
@@ -222,6 +224,7 @@ def test_individual_image_meta(base_image):
 
     assert "extra" not in output_tables
     assert "extra" not in output_tables["basic"].colnames
+    assert "extra" not in output_tables["photometry"].colnames
 
 
 @pytest.mark.parametrize(
